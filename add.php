@@ -36,6 +36,12 @@ $errors = array('email'=>'', 'title'=>'', 'ingredients'=>'');
             }
         }
 
+        if(array_filter($errors)){ // circle trough array and if it's empty, then it false. Also can set a callback function as a 2nd argument.
+            echo 'errors in the form';
+        } else {
+            header('Location: index.php');
+        }
+
     } // end of form validation
 
 ?>
@@ -48,13 +54,13 @@ $errors = array('email'=>'', 'title'=>'', 'ingredients'=>'');
         <h4 class="center">Add Pizza</h4>
         <form action="add.php" method="POST" class="white">
             <label for="">Your Email</label>
-            <input type="text" name="email" value="<?php echo $email ?>">
+            <input type="text" name="email" value="<?php echo htmlspecialchars($email) ?>">
             <div class="red-text"><?php echo $errors['email'] ?></div>
             <label for="">Pizza Title</label>
-            <input type="text" name="title" value="<?php echo $title ?>">
+            <input type="text" name="title" value="<?php echo htmlspecialchars($title) ?>">
             <div class="red-text"><?php echo $errors['title'] ?></div>
             <label for="">Ingredients (coma separated):</label>
-            <input type="text" name="ingredients" value="<?php echo $ingredients ?>">
+            <input type="text" name="ingredients" value="<?php echo htmlspecialchars($ingredients) ?>">
             <div class="red-text"><?php echo $errors['ingredients'] ?></div>
             <div class="center">
                 <input type="submit" name="submit" value="submit" class="btn brand z-depth-0">
