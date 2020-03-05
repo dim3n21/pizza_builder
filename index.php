@@ -1,12 +1,6 @@
 <?php
 
-    // connect to database
-    $conn = mysqli_connect('localhost', 'admin2', 'test1234', 'pizza_builder');
-
-    // check connection
-    if(!$conn) {
-        echo 'Connection error: ' . mysqli_connect_error();
-    }
+    include('config/db_connect.php');
 
     // write query for all pizzas
     $sql = 'SELECT title, ingredients, id FROM pizzas ORDER BY created_at';
@@ -42,9 +36,9 @@
                         <div class="card-content center">
                             <h6><?php echo htmlspecialchars($pizza['title']) ?></h6>
                             <ul>
-                                <?php foreach(explode(',', $pizza['ingredients']) as $ing) { ?>
+                                <?php foreach(explode(',', $pizza['ingredients']) as $ing) : ?>
                                     <li><?php echo htmlspecialchars($ing); ?> </li>
-                                <?php } ?>
+                                <?php endforeach ?>
                             </ul>
                         </div>
                         <div class="card-action right-align">
